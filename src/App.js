@@ -1,22 +1,53 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Start from './components/Start';
+import Question from './components/Question';
+import Result from './components/Result';
+import { Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
 function App() {
+  const [num, setNum] = useState(1);
+
+  const [score, setScore] = useState({
+    EI: 0,
+    SN: 0,
+    TF: 0,
+    PJ: 0,
+  });
+
+  const updateScore = (type, value) => {
+    setScore({
+      ...score,
+      [type]: score[type] + value,
+    });
+  };
+
+  const resetState = () => {
+    setNum(1);
+    setScore({
+      EI: 0,
+      SN: 0,
+      TF: 0,
+      PJ: 0,
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>안뇽</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Start setNum={setNum} />} />
+        <Route
+          path="/question"
+          element={
+            <Question num={num} setNum={setNum} updateScore={updateScore} />
+          }
+        />
+        <Route
+          path="/result"
+          element={<Result score={score} resetState={resetState} />}
+        />
+      </Routes>
+    </>
   );
 }
 
