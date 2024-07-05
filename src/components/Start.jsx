@@ -9,7 +9,7 @@ function Start() {
     <div className="content" id="start">
       <p>나와 닮은 짱구 캐릭터 테스트</p>
       <img src={bannerImage} className="img" />
-      <p id="maker">제작자: 이나경</p>
+      <p id="maker">제작자: 박태범</p>
       <p id="maker">이전결과: {mbtiResult}</p>
       <button className="btn btn-warning" onClick={() => navigate("/question")}>
         떡잎마을로 출발~
